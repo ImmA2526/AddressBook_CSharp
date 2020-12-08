@@ -1,8 +1,8 @@
 ﻿using System;
-
+using System.Collections.Generic;
 namespace Address
 {
-    class PersonalDetail
+    public class PersonalDetail
     {
         public string FirstName;
         public string LastName;

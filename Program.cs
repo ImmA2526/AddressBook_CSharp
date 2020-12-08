@@ -8,9 +8,27 @@ namespace Address
         public static LinkedList<PersonalDetail> list = new LinkedList<PersonalDetail>();
         static void Main(string[] args)
         {
-            Console.WriteLine("************Welcome to AddressBook**********");
-            AddContact();
-
+            Console.WriteLine("************Welcome to AddressBook**********");          
+            while (true)
+            {
+                Console.WriteLine("Enter Your Choice to Proceed...\n1.AddContact \n2.DisplayDetail \n3.Exit");
+                int Choice = Convert.ToInt32(Console.ReadLine());
+                switch (Choice)
+                {
+                    case 1:
+                        AddContact();
+                        Console.WriteLine("Detail Added Succesfully...");
+                        break;
+                    case 2:
+                        Display();
+                        Console.WriteLine("");
+                        break;
+                    case 3:
+                        Console.WriteLine("Invalid....");
+                        Environment.Exit(0);
+                        break;
+                }
+            }
         }
         public static void AddContact()
         {
@@ -29,6 +47,15 @@ namespace Address
             PersonalDetail Person = new PersonalDetail(FirstName,LastName,State,Address,Pincode,MobileNumber);
             list.AddFirst(Person);
             Person.Display();
+        }
+        public static void Display()
+        {
+            Console.WriteLine("Details Are...");
+            foreach (var value in list)
+            {
+                PersonalDetail Detail = value;
+                Detail.Display();
+            }
         }
     }
 }
