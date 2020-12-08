@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 namespace Address
 {
-    public class PersonalDetail
+   class PersonalDetail
     {
         public string FirstName;
         public string LastName;
