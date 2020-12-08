@@ -11,7 +11,7 @@ namespace Address
             Console.WriteLine("************Welcome to AddressBook**********");          
             while (true)
             {
-                Console.WriteLine("Enter Your Choice to Proceed...\n1.AddContact \n2.DisplayDetail \n3.Edit Detail \n4.Exit");
+                Console.WriteLine("1.AddContact \n2.DisplayDetail \n3.Edit Detail \n4.Delete Contact\n5.Exit \n Enter Your Choice to Proceed...  ");
                 int Choice = Convert.ToInt32(Console.ReadLine());
                 switch (Choice)
                 {
@@ -24,12 +24,17 @@ namespace Address
                         Console.WriteLine("");
                         break;
                     case 3:
-                        Console.WriteLine("Please Enter First Name to Edit :");
+                        Console.Write("Please Enter First Name to Edit :");
                         string Edit = Console.ReadLine();
                         EditContact(Edit);
                         break;
+                    case 4:
+                        Console.Write("Please Enter First Name to Delete Contact: ");
+                        string Delet = Console.ReadLine();
+                        DeleteContact(Delet);
+                        break;
                     default:
-                        Console.WriteLine("........Thank You....");
+                        Console.WriteLine("........Thank You........");
                         Environment.Exit(0);
                         break;
                 }
@@ -78,6 +83,23 @@ namespace Address
                 }
             }
         }
+        public static void DeleteContact(string FirstName)
+        {
+            foreach (PersonalDetail Contact in list)
+            {
+                if (FirstName.Equals(Contact.FirstName))
+                {
+                    list.Remove(Contact);
+                    Console.WriteLine("Contact Delete Succesfully...");
+                    break;
+                }
+                else
+                {
+                    Console.Write("Contact Not Found...");
+                }
+            }
+        }
+        
         public static void Display()
         {
             Console.WriteLine("Details Are...");
