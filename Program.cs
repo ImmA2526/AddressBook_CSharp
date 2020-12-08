@@ -8,7 +8,8 @@ namespace Address
         public static LinkedList<PersonalDetail> list = new LinkedList<PersonalDetail>();
         static void Main(string[] args)
         {
-            Console.WriteLine("************Welcome to AddressBook**********");          
+            Console.WriteLine("************Welcome to AddressBook**********");  
+            //Add Multiple Contact in Address Book//
             while (true)
             {
                 Console.WriteLine("1.AddContact \n2.DisplayDetail \n3.Edit Detail \n4.Delete Contact\n5.Exit \n Enter Your Choice to Proceed...  ");
