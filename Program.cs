@@ -59,27 +59,24 @@ namespace Address
             Console.Clear();
             Person.Display();
         }
-        public  static void EditContact(string FirstName)
+       public  static void EditContact(string FirstName)
         {
+            int size = list.Count;
+            int check = 0;
             foreach (PersonalDetail Contact in list)
             {
-                if (FirstName.Equals(Contact.FirstName))
+               
+               if (FirstName.Equals(Contact.FirstName))
                 {
-                    Console.Write("Enter Last Name: ");
-                    Contact.LastName = Console.ReadLine();
-                    Console.Write("Enter State: ");
-                    Contact.State = Console.ReadLine();
-                    Console.Write("Enter Address : ");
-                    Contact.Address = Console.ReadLine();
-                    Console.Write("Enter Pincode: ");
-                    Contact.Pincode = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Enter Mobile Number: ");
-                    Contact.MobileNumber = Convert.ToInt32(Console.ReadLine());
+                    AddContact();
                     Console.WriteLine("Contact Update Succesfully...");
+                    list.Remove(Contact);
+                    break;
                 }
-                else
+                else if (size == check)
                 {
-                    Console.WriteLine("Contact Not Found");
+                    Console.WriteLine(" Not Found in AddressBook...");
+                    break;
                 }
             }
         }
