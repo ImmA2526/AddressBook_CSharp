@@ -17,7 +17,7 @@ namespace Address
             Console.WriteLine("************Welcome to AddressBook**********");  
             while (flag)
             {
-                Console.WriteLine("1.AddContact \n2.DisplayDetail \n3.Edit Detail \n4.Delete Contact\n5.Exit \nEnter Your Choice to Proceed...  ");
+                Console.WriteLine("1.AddContact \n2.DisplayDetail \n3.Edit Detail \n4.Delete Contact\n5.SearchContact\n6.Exit \nEnter Your Choice to Proceed...  ");
                 int Choice = Convert.ToInt32(Console.ReadLine());
                 switch (Choice)
                 {
@@ -39,13 +39,17 @@ namespace Address
                         string Delet = Console.ReadLine();
                         DeleteContact(Delet);
                         break;
+                    case 5:
+                        Console.WriteLine("Please Enter City To Display Contact associated with it... ");
+                        string City = Console.ReadLine();
+                        SearchContact(City);
+                        break;
                     default:
                         Console.WriteLine("........Thank You........");
                         flag = false;
                         break;
                 }
-           }
-            
+            }
         }
         public static void AddContact()
         {
@@ -131,6 +135,21 @@ namespace Address
                 }
             }
             return Dup;
+        }
+        public static void SearchContact(string City)
+        {
+            foreach (PersonalDetail Contact in list)
+            {
+                if (Contact.Address.Equals(City))
+                {
+                    Contact.Display();
+                }
+                else
+                {
+                    Console.WriteLine(City+ "Not Present...");
+                    break;
+                }
+            }
         }
     }
 }
