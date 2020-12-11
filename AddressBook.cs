@@ -11,9 +11,9 @@ namespace Address
         {
             while (true)
             {
-                Console.WriteLine("1. Create AddressBook\n2. Open AddressBook\n3. Delete AddressBook\n4. Exit \nEnter Your Choice to Proceed...  ");
+                Console.WriteLine("************Welcome to AddressBook**********");
+                Console.WriteLine("1.Create AddressBook\n2.Open AddressBook\n3.Delete AddressBook\n4.Exit \nEnter Your Choice to Proceed...  ");
                 int Choice = Convert.ToInt32(Console.ReadLine());
-                int size=Dict.Count;
                 switch (Choice)
                 {
                     case 1:
