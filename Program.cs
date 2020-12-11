@@ -51,6 +51,12 @@ namespace Address
         {
             Console.Write("Enter Firstname: ");
             string FirstName = Console.ReadLine();
+            bool Dup = DupFirstName(FirstName);
+            if (Dup)
+            {
+                Console.Write(" Enter Firstname: ");
+                FirstName = Console.ReadLine();
+            }
             Console.Write("Enter LastName: ");
             string LastName = Console.ReadLine();
             Console.Write("Enter State: ");
@@ -111,6 +117,20 @@ namespace Address
                 PersonalDetail Detail = value;
                 Detail.Display();
             }
+        }
+        public static bool DupFirstName(string First_Name)
+        {
+            bool Dup = false;
+            foreach (PersonalDetail Name in list)
+            {
+                if (Name.FirstName.Equals(First_Name))
+                {
+                    Dup = true;
+                    Console.WriteLine($"The Name {First_Name} is alredy  Present....");
+                    break;
+                }
+            }
+            return Dup;
         }
     }
 }
