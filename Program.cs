@@ -5,11 +5,17 @@ namespace Address
 {
     class Program
     {
-        public static LinkedList<PersonalDetail> list = new LinkedList<PersonalDetail>();
-        static void Main(string[] args)
+        public static LinkedList<PersonalDetail> list ;
+        public Program()
         {
+            list = new LinkedList<PersonalDetail>();
+        }
+
+     public static void MainMethod()
+        {
+            bool flag = true;
             Console.WriteLine("************Welcome to AddressBook**********");  
-            while (true)
+            while (flag)
             {
                 Console.WriteLine("1.AddContact \n2.DisplayDetail \n3.Edit Detail \n4.Delete Contact\n5.Exit \nEnter Your Choice to Proceed...  ");
                 int Choice = Convert.ToInt32(Console.ReadLine());
@@ -35,10 +41,11 @@ namespace Address
                         break;
                     default:
                         Console.WriteLine("........Thank You........");
-                        Environment.Exit(0);
+                        flag = false;
                         break;
                 }
-            }
+           }
+            
         }
         public static void AddContact()
         {
