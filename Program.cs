@@ -11,85 +11,28 @@ namespace Address
             list = new List<PersonalDetail>();
         }
 
-     public void MainMethod()
-        {
-            bool flag = true;
-            while (flag)
-            {
-                Console.WriteLine("1.AddContact \n2.DisplayDetail \n3.Edit Detail \n4.Delete Contact\n5.SearchContact\n6.Search Person By City or State\n7.Exit \nEnter Your Choice to Proceed...  ");
-                int Choice = Convert.ToInt32(Console.ReadLine());
-                switch (Choice)
-                {
-                    case 1:
-                        AddContact();
-                        Console.WriteLine("Detail Added Succesfully...");
-                        break;
-                    case 2:
-                        Display();
-                        Console.WriteLine("");
-                        break;
-                    case 3:
-                        Console.Write("Please Enter First Name to Edit :");
-                        string Edit = Console.ReadLine();
-                        EditContact(Edit);
-                        break;
-                    case 4:
-                        Console.Write("Please Enter First Name to Delete Contact: ");
-                        string Delet = Console.ReadLine();
-                        DeleteContact(Delet);
-                        break;
-                    case 5:
-                        Console.Write("Please Enter City To Display Contact associated with it:  ");
-                        string City = Console.ReadLine();
-                        SearchContact_City(City);
-                        break;
-                    case 6:
-                        Console.Write("Please Enter State to Display Contact associated with it:  ");
-                        string State = Console.ReadLine();
-                        SearchContact_State(State);
-                        break;
-                    default:
-                        Console.WriteLine("........Thank You........");
-                        flag = false;
-                        break;
-                }
-            }
-        }
-        public  void AddContact()
-        {
-            Console.Write("Enter Firstname: ");
-            string FirstName = Console.ReadLine();
-            bool Dup = DupFirstName(FirstName);
-            if (Dup)
-            {
-                Console.Write(" Enter Firstname: ");
-                FirstName = Console.ReadLine();
-            }
-            Console.Write("Enter LastName: ");
-            string LastName = Console.ReadLine();
-            Console.Write("Enter State: ");
-            string State = Console.ReadLine();
-            Console.Write("Enter Address : ");
-            string Address = Console.ReadLine();
-            Console.Write("Enter Pincode: ");
-            int Pincode = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter Mobile Number: ");
-            int MobileNumber = Convert.ToInt32(Console.ReadLine());
-            PersonalDetail Person = new PersonalDetail(FirstName,LastName,State,Address,Pincode,MobileNumber);
-            list.Add(Person);
-            Console.Clear();
-            Person.Display();
-        }
+     
         public void EditContact(string FirstName)
         {
             int size = list.Count;
             int check = 0;
             foreach (PersonalDetail Contact in list)
             {
-
                 if (FirstName.Equals(Contact.FirstName))
                 {
-                    AddContact();
+                    Console.Write(" Enter Firstname: ");
+                    string Firstname = Console.ReadLine();
+                    Console.Write("Enter LastName: ");
+                    string LastName = Console.ReadLine();
+                    Console.Write("Enter State: ");
+                    string State = Console.ReadLine();
+                    Console.Write("Enter Address : ");
+                    string Address = Console.ReadLine();
+                    Console.Write("Enter Pincode: ");
+                    int Pincode = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter Mobile Number: ");
+                    int MobileNumber = Convert.ToInt32(Console.ReadLine());
+                    AddContacts(FirstName, LastName, State, Address, Pincode, MobileNumber);
                     Console.WriteLine("Contact Update Succesfully...");
                     list.Remove(Contact);
                     break;
@@ -168,7 +111,31 @@ namespace Address
                     Console.WriteLine(State + "Not Found..");
                 }
             }
+
         }
+
+        public void AddContacts(string FirstName , string LastName, string State, string Address , int Pincode, int MobileNumber)
+        {
+            bool duplicate = Equals(FirstName);
+            if (duplicate)
+            {
+                Console.WriteLine($"Duplicate Contact not allowed '{0}' is already in address book", FirstName);
+            }
+            else
+            {
+                PersonalDetail user = new PersonalDetail(FirstName ,LastName,State,Address ,Pincode, MobileNumber);
+                list.Add(user);
+            }
+        }
+
+        public bool Equals(string first_name)
+        {
+            if (list.Any(e => e.FirstName == first_name))
+                return true;
+            else
+                return false;
+        }
+
     }
 }
 
