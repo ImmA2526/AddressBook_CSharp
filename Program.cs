@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
 namespace Address
 {
     class Program
     {
-        public static LinkedList<PersonalDetail> list ;
+       List<PersonalDetail> list ;
         public Program()
         {
-            list = new LinkedList<PersonalDetail>();
+            list = new List<PersonalDetail>();
         }
 
-     public static void MainMethod()
+     public void MainMethod()
         {
             bool flag = true;
-            Console.WriteLine("************Welcome to AddressBook**********");  
             while (flag)
             {
                 Console.WriteLine("1.AddContact \n2.DisplayDetail \n3.Edit Detail \n4.Delete Contact\n5.SearchContact\n6.Exit \nEnter Your Choice to Proceed...  ");
@@ -51,7 +50,7 @@ namespace Address
                 }
             }
         }
-        public static void AddContact()
+        public  void AddContact()
         {
             Console.Write("Enter Firstname: ");
             string FirstName = Console.ReadLine();
@@ -72,11 +71,11 @@ namespace Address
             Console.Write("Enter Mobile Number: ");
             int MobileNumber = Convert.ToInt32(Console.ReadLine());
             PersonalDetail Person = new PersonalDetail(FirstName,LastName,State,Address,Pincode,MobileNumber);
-            list.AddFirst(Person);
+            list.Add(Person);
             Console.Clear();
             Person.Display();
         }
-        public static void EditContact(string FirstName)
+        public void EditContact(string FirstName)
         {
             int size = list.Count;
             int check = 0;
@@ -97,7 +96,7 @@ namespace Address
                 }
             }
         }
-        public static void DeleteContact(string FirstName)
+        public void DeleteContact(string FirstName)
         {
             foreach (PersonalDetail Contact in list)
             {
@@ -113,7 +112,7 @@ namespace Address
                 }
             }
         }
-        public static void Display()
+        public  void Display()
         {
             Console.WriteLine("Details Are...");
             foreach (var value in list)
@@ -122,7 +121,7 @@ namespace Address
                 Detail.Display();
             }
         }
-        public static bool DupFirstName(string First_Name)
+        public  bool DupFirstName(string First_Name)
         {
             bool Dup = false;
             foreach (PersonalDetail Name in list)
@@ -136,9 +135,9 @@ namespace Address
             }
             return Dup;
         }
-        public static void SearchContact(string City)
+        public  void SearchContact(string City)
         {
-            foreach (PersonalDetail Contact in list)
+            foreach (PersonalDetail Contact in list.FindAll(x=>x.Address.Equals(City)).ToList())
             {
                 if (Contact.Address.Equals(City))
                 {
