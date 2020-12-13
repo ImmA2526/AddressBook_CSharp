@@ -11,6 +11,7 @@ namespace Address
         {
             while (true)
             {
+                Program Program =new Program();
                 Console.WriteLine("************Welcome to AddressBook**********");
                 Console.WriteLine("1.Create AddressBook\n2.Open AddressBook\n3.Delete AddressBook\n4.Exit \nEnter Your Choice to Proceed...  ");
                 int Choice = Convert.ToInt32(Console.ReadLine());

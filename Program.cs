@@ -16,7 +16,7 @@ namespace Address
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("1.AddContact \n2.DisplayDetail \n3.Edit Detail \n4.Delete Contact\n5.SearchContact\n6.Exit \nEnter Your Choice to Proceed...  ");
+                Console.WriteLine("1.AddContact \n2.DisplayDetail \n3.Edit Detail \n4.Delete Contact\n5.SearchContact\n6.Search Person By City or State\n7.Exit \nEnter Your Choice to Proceed...  ");
                 int Choice = Convert.ToInt32(Console.ReadLine());
                 switch (Choice)
                 {
@@ -39,9 +39,14 @@ namespace Address
                         DeleteContact(Delet);
                         break;
                     case 5:
-                        Console.WriteLine("Please Enter City To Display Contact associated with it... ");
+                        Console.Write("Please Enter City To Display Contact associated with it:  ");
                         string City = Console.ReadLine();
-                        SearchContact(City);
+                        SearchContact_City(City);
+                        break;
+                    case 6:
+                        Console.Write("Please Enter State to Display Contact associated with it:  ");
+                        string State = Console.ReadLine();
+                        SearchContact_State(State);
                         break;
                     default:
                         Console.WriteLine("........Thank You........");
@@ -135,7 +140,7 @@ namespace Address
             }
             return Dup;
         }
-        public  void SearchContact(string City)
+        public  void SearchContact_City(string City)
         {
             foreach (PersonalDetail Contact in list.FindAll(x=>x.Address.Equals(City)).ToList())
             {
@@ -147,6 +152,20 @@ namespace Address
                 {
                     Console.WriteLine(City+ "Not Present...");
                     break;
+                }
+            }
+        }
+        public void SearchContact_State(string State)
+        {
+            foreach (PersonalDetail Contact in list.FindAll(x => x.State.Equals(State)).ToList())
+            {
+                if (Contact.State.Equals(State))
+                {
+                    Contact.Display();
+                }
+                else
+                {
+                    Console.WriteLine(State + "Not Found..");
                 }
             }
         }
